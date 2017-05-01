@@ -1,7 +1,7 @@
 Math::Primesieve
 ================
 
-Perl 6 bindings for L<primesieve|http://primesieve.org/>.
+Perl 6 bindings for [primesieve](http://primesieve.org/).
 
 
 primesieve generates primes using a highly optimized <a
@@ -53,7 +53,7 @@ INSTALLATION
 ============
 
 First install the
-L<primesieve|https://github.com/kimwalisch/primesieve> library.
+[primesieve](https://github.com/kimwalisch/primesieve) library.
 
 Then install this module in the normal way with panda or zef.
 
