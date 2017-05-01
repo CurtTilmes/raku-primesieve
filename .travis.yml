@@ -4,4 +4,4 @@ perl6:
   - latest
 
 install:
-  - sudo apt-get install -y primesieve
+  - sudo apt-get install -y libprimesieve6-dev
