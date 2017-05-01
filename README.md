@@ -46,7 +46,7 @@ USAGE
     $p.print(10, 20);             # Print primes between 10 and 20
 
 Pass options :twins, :triplets, :quadruplets, :quintuplets,
-:sextuplets to count or print for prime k-tuplets.
+:sextuplets to `count` or `print` for prime k-tuplets.
 
 
 INSTALLATION
