@@ -19,8 +19,6 @@
 
     "depends" : [ "NativeCall" ],
 
-    "description" : "Perl6 bindings for primesieve",
-
     "test-depends" : [ "Test" ],
 
     "license" : "BSD-2-Clause",
