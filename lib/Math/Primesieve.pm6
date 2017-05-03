@@ -144,8 +144,7 @@ class Math::Primesieve does Positional
     method AT-POS($n) { self.nth-prime($n) }
 
     method count(UInt $start is copy, UInt $stop is copy = 0,
-                 :$twins, :$triplets, :$quadruplets,
-                 :$quintuplets, :$sextuplets)
+                 :$twins, :$triplets, :$quadruplets, :$quintuplets, :$sextuplets)
     {
         unless $stop
         {
