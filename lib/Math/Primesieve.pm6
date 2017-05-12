@@ -72,7 +72,7 @@ class Math::Primesieve::iterator is repr('CStruct')
     }
 }
 
-class X::Math::Primesieve
+class X::Math::Primesieve is Exception
 {
     method message() { 'Math::Primesieve error' }
 }
