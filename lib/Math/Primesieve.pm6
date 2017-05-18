@@ -13,7 +13,7 @@ enum PRIMESIEVE <SHORT_PRIMES USHORT_PRIMES INT_PRIMES UINT_PRIMES
   INT16_PRIMES UINT16_PRIMES INT32_PRIMES UINT32_PRIMES INT64_PRIMES
   UINT64_PRIMES>;
 
-class Math::Primesieve::iterator is repr('CStruct')
+class Math::Primesieve::iterator-struct is repr('CStruct')
 {
     has size_t $.i;
     has size_t $.last_idx;
@@ -25,30 +25,27 @@ class Math::Primesieve::iterator is repr('CStruct')
     has uint64 $.tiny_cache_size;
     has int32 $.is_error;
 
-    sub primesieve_init(Math::Primesieve::iterator)
+    sub primesieve_init(Math::Primesieve::iterator-struct)
         is native(LIB) {*}
 
-    sub primesieve_free_iterator(Math::Primesieve::iterator)
+    sub primesieve_free_iterator(Math::Primesieve::iterator-struct)
         is native(LIB) {*}
 
-    sub primesieve_skipto(Math::Primesieve::iterator, uint64, uint64)
+    sub primesieve_skipto(Math::Primesieve::iterator-struct, uint64, uint64)
         is native(LIB) {*}
 
-    sub primesieve_generate_next_primes(Math::Primesieve::iterator)
+    sub primesieve_generate_next_primes(Math::Primesieve::iterator-struct)
         is native(LIB) {*}
 
-    sub primesieve_generate_prev_primes(Math::Primesieve::iterator)
+    sub primesieve_generate_prev_primes(Math::Primesieve::iterator-struct)
         is native(LIB) {*}
 
     sub primesieve_get_max_stop() returns uint64
         is native(LIB) {*}
 
-    method new(Int $start?)
+    method init()
     {
-        my $self = self.bless;
-        primesieve_init($self);
-        $self.skipto($start) with $start;
-        $self;
+        primesieve_init(self);
     }
 
     method skipto(uint64 $start, uint64 $stop-hint = primesieve_get_max_stop)
@@ -68,9 +65,36 @@ class Math::Primesieve::iterator is repr('CStruct')
         $!primes[$!i]
     }
 
-    method DESTROY()
+    method free()
     {
         primesieve_free_iterator($_) with self;
+    }
+}
+
+class Math::Primesieve::iterator
+{
+    has $.raw;
+
+    method new(Int $start?)
+    {
+        my $self = self.bless(raw => buf8.allocate(
+            nativesizeof(Math::Primesieve::iterator-struct)));
+        $self.iterator.init;
+        $self.skipto($start) with $start;
+        $self;
+    }
+
+    method iterator() { nativecast(Math::Primesieve::iterator-struct, $!raw) }
+
+    method skipto(|c) { self.iterator.skipto(|c) }
+
+    method next() { self.iterator.next }
+
+    method prev() { self.iterator.prev }
+
+    method DESTROY()
+    {
+        self.iterator.free;
     }
 }
 
