@@ -2,6 +2,8 @@ use v6;
 
 use NativeCall;
 
+
+
 constant LIB = 'primesieve';
 
 constant PRIMESIEVE_ERROR = 18446744073709551615;
@@ -16,7 +18,7 @@ class Math::Primesieve::iterator is repr('CStruct')
     has size_t $.i;
     has size_t $.last_idx;
     has CArray[uint64] $.primes;
-    has CArray[uint64] $.primes_pimpl;
+    has Pointer $.primes_pimpl;
     has uint64 $.start;
     has uint64 $.stop;
     has uint64 $.stop_hint;
@@ -126,7 +128,7 @@ class Math::Primesieve does Positional
     sub primesieve_print_sextuplets(uint64, uint64)
         returns uint64 is native(LIB) {*}
 
-    sub primesieve_get_max_stop() returns uint64 is native(LIB) { * }
+    sub primesieve_get_max_stop() returns uint64 is native(LIB) {*}
 
     sub primesieve_get_sieve_size() returns int32 is native(LIB) {*}
 
@@ -136,7 +138,7 @@ class Math::Primesieve does Positional
 
     sub primesieve_set_num_threads(int32) is native(LIB) {*}
 
-    sub primesieve_free(Pointer) is native(LIB) { * }
+    sub primesieve_free(Pointer) is native(LIB) {*}
 
     method BUILD(:$num-threads, :$sieve-size)
     {
@@ -173,9 +175,8 @@ class Math::Primesieve does Positional
             $start = 0;
         }
 
-        my $p = primesieve_generate_primes($start, $stop, $size, UINT64_PRIMES);
-
-        die X::Math::Primsieve.new if $p == PRIMESIEVE_ERROR;
+        my $p = primesieve_generate_primes($start, $stop, $size, UINT64_PRIMES)
+            or die X::Math::Primesieve.new;
 
         my @ret = nativecast(CArray[uint64], $p)[0 ..^ $size];
 
@@ -186,9 +187,8 @@ class Math::Primesieve does Positional
 
     method n-primes(UInt $n, UInt $start = 0)
     {
-        my $p = primesieve_generate_n_primes($n, $start, UINT64_PRIMES);
-
-        die X::Math::Primsieve.new if $p == PRIMESIEVE_ERROR;
+        my $p = primesieve_generate_n_primes($n, $start, UINT64_PRIMES)
+            or die X::Math::Primesieve.new;
 
         my @ret = nativecast(CArray[uint64], $p)[0 ..^ $n];
 
