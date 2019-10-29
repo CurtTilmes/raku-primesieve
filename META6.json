@@ -5,7 +5,7 @@
 
     "auth" : "github:CurtTilmes",
 
-    "version" : "0.3",
+    "version" : "0.4",
 
     "source-url" : "https://github.com/CurtTilmes/raku-primesieve.git",
 
