@@ -1,7 +1,7 @@
 Math::Primesieve
 ================
 
-Perl 6 bindings for [primesieve](http://primesieve.org/).
+Raku bindings for [primesieve](http://primesieve.org/).
 
 
 primesieve generates primes using a highly optimized <a
@@ -70,8 +70,11 @@ INSTALLATION
 First install the
 [primesieve](https://github.com/kimwalisch/primesieve) library.
 
+For Ubuntu linux, just run:
+```
+sudo apt install libprimesieve-dev
+```
+
 Then install this module in the normal way with zef.
 
     zef install Math::Primesieve
-
-

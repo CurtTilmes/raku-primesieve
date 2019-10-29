@@ -7,9 +7,9 @@
 
     "version" : "0.3",
 
-    "source-url" : "https://github.com/CurtTilmes/perl6-primesieve.git",
+    "source-url" : "https://github.com/CurtTilmes/raku-primesieve.git",
 
-    "perl" : "6.c",
+    "perl" : "6.*",
 
     "tags" : [ "Math", "Primes" ],
 
@@ -26,7 +26,7 @@
     "authors" : [ "Curt Tilmes <ctilmes@cpan.org>" ],
 
     "support" : {
-      "source" : "https://github.com/CurtTilmes/perl6-primesieve.git",
-      "bugtracker" : "https://github.com/CurtTilmes/perl6-primesieve/issues"
+      "source" : "https://github.com/CurtTilmes/raku-primesieve.git",
+      "bugtracker" : "https://github.com/CurtTilmes/raku-primesieve/issues"
     }
 }
