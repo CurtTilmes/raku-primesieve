@@ -4,9 +4,13 @@ my $Lib;
 
 INIT
 {
-    my $libname = $*VM.platform-library-name('primesieve'.IO,:version(v8))
-                  .basename;
-    $Lib = NativeLibs::Loader.load($libname) or fail
+    for v7, v8, v9 -> $version
+    {
+        my $libname = $*VM.platform-library-name('primesieve'.IO,:$version)
+                      .basename;
+        last if $Lib = NativeLibs::Loader.load($libname)
+    }
+    fail "No primesieve library" unless $Lib
 }
 
 constant PRIMESIEVE_ERROR = 18446744073709551615;
