@@ -1,4 +1,4 @@
-use v6;
+#!/usr/bin/env raku
 
 use Test;
 use Math::Primesieve;

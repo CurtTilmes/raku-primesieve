@@ -1,7 +1,4 @@
 #!/usr/bin/env perl6
-
-use v6;
-
 use Math::Primesieve;
 
 my $p = Math::Primesieve.new;

@@ -3,7 +3,6 @@ Math::Primesieve
 
 Raku bindings for [primesieve](http://primesieve.org/).
 
-
 primesieve generates primes using a highly optimized <a
 href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">sieve of
 Eratosthenes</a> implementation. It counts the primes below 10¹⁰ in
@@ -14,8 +13,6 @@ up to 2⁶⁴.
 
 USAGE
 =====
-
-    use v6;
 
     use Math::Primesieve;
 

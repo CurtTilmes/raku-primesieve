@@ -1,9 +1,7 @@
-#!perl6
-
-use v6;
-use lib 'lib';
+#!/usr/bin/env raku
 
 use Test;
+use Test::When <author>;
 use Test::META;
 
 plan 1;
