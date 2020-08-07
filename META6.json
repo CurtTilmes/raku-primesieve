@@ -2,7 +2,7 @@
     "meta-version"   : "1",
     "perl"           : "6.d",
     "name"           : "Math::Primesieve",
-    "api"            : "1",
+    "api"            : "2",
     "version"        : "0.5",
     "auth"           : "github:CurtTilmes",
     "description"    : "Raku bindings for primesieve",

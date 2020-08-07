@@ -4,11 +4,10 @@ my $Lib;
 
 INIT
 {
-    for v7, v8, v9 -> $version
+    for v9, v8, v7 -> $version
     {
-        my $libname = $*VM.platform-library-name('primesieve'.IO,:$version)
-                      .basename;
-        last if $Lib = NativeLibs::Loader.load($libname)
+        my $lib = $*VM.platform-library-name('primesieve'.IO, :$version);
+        last if $Lib = NativeLibs::Loader.load($lib.basename)
     }
     fail "No primesieve library" unless $Lib
 }
@@ -24,12 +23,13 @@ class Math::Primesieve::iterator-struct is repr('CStruct')
 {
     has size_t $.i;
     has size_t $.last_idx;
-    has CArray[uint64] $.primes;
-    has Pointer $.primes_pimpl;
     has uint64 $.start;
     has uint64 $.stop;
     has uint64 $.stop_hint;
-    has uint64 $.tiny_cache_size;
+    has uint64 $.dist;
+    has CArray[uint64] $.primes;
+    has Pointer $.vector;
+    has Pointer $.primeGenerator;
     has int32 $.is_error;
 
     sub primesieve_init(Math::Primesieve::iterator-struct)

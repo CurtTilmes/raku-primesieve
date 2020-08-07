@@ -11,3 +11,5 @@ my $sum;
 $sum += $iterator.next for ^1000000;
 
 is $sum, 7472966967499, 'Sum lots of primes';
+
+done-testing;
