@@ -5,6 +5,12 @@ use Math::Primesieve;
 
 plan 2;
 
+unless Version.new(Math::Primesieve.version) ~~ v7+
+{
+    skip-rest "Old version of library, skipping";
+    exit;
+}
+
 ok my $iterator = Math::Primesieve::iterator.new, 'Make an iterator';
 
 my $sum;
