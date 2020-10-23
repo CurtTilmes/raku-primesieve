@@ -1,4 +1,4 @@
-use NativeLibs:ver<0.0.8>:auth<github:salortiz>;
+use NativeLibs:ver<0.0.8+>:auth<github:salortiz>;
 
 my $Lib;
 
